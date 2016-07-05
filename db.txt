@@ -1,0 +1,24 @@
+create table user(username nvarchar(25) primary key,password nvarchar(25) not null)
+
+select * from user
+
+insert into user values("jimmy","jimmy")
+insert into user values("0982","0982")
+
+create table tasks(
+tid int  AUTO_INCREMENT PRIMARY KEY,
+username nvarchar(25) ,
+taskname nvarchar(50),
+category nvarchar(30) default 'General',
+taskdate date,
+tasktime time,
+priority int,
+groupid int default 0,
+taskstatus nvarchar(30) ,
+foreign key(username) references user(username));
+drop table tasks
+insert into tasks(username,taskname,taskdate,tasktime,priority,taskstatus) values('jimmy','pending2','2015-08-01','10:30',5,'pending')
+select * from tasks
+delete from tasks where username='jimmy'
+
+update tasks set taskstatus='todo' where taskstatus='completed'
